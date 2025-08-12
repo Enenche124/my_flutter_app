@@ -28,6 +28,18 @@ class CounterScreen extends StatefulWidget {
         counter++;
       });
     }
+
+    void decreaseCounter(){
+      setState((){
+        counter--;
+      });
+    }
+
+    void resetCounter(){
+      setState(() {
+        counter = 0;
+    });
+    }
   
 
   @override
@@ -35,18 +47,41 @@ class CounterScreen extends StatefulWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Statefulwidget Demo'),
+        backgroundColor: Colors.green,
       ),
       body: Center(
-        child: Text(
-          'Counter: $counter',
-          style: TextStyle(fontSize: 30),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              '$counter',
+              style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: increaseCounter,
+                  child: Text('Increase'),
+                ),
+                SizedBox(width: 20),
+                ElevatedButton(
+                  onPressed: decreaseCounter,
+                  child: Text('Decrease'),
+                ),
+                SizedBox(width: 20),
+                ElevatedButton(
+                  onPressed: resetCounter,
+                  child: Text('Reset'),
+                ),
+              ]
+            )
+          ]
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: increaseCounter,
-        child: Icon(Icons.add),
-      ),
-    );
+         
+        ),
+      );
 
   }
   }
